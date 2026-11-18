@@ -3,9 +3,19 @@
 Dictado por voz para todo Windows. Haces clic en cualquier campo de texto, mantienes un atajo, hablas y sueltas: el texto aparece donde está el cursor. Usa Whisper (`faster-whisper`) **localmente**: el audio no sale de tu PC.
 
 ## Uso
-1. Primera vez: ejecuta `setup.bat` (crea el entorno en `%LOCALAPPDATA%\TranslatorES\venv`, fuera de OneDrive).
+Requiere **Python 3.12 de 64 bits**. Si usas el gestor oficial de Python, instálalo con `pymanager install 3.12`.
+
+1. Primera vez: ejecuta `setup.bat` (crea el entorno en `%LOCALAPPDATA%\TranslatorES\venv-py312`, fuera de OneDrive).
 2. Abre la app con `run.bat`. La primera vez descarga el modelo (~500 MB para `small`).
 3. Haz clic en el campo donde quieres escribir, **mantén el atajo** (por defecto `Ctrl + Alt + Espacio`), habla y suelta.
+
+El instalador usa paquetes precompilados y verifica las dependencias. Si falla, muestra un error y `run.bat` no inicia una instalación incompleta.
+
+El panel **Señal del micrófono** muestra un ecualizador en vivo y avisa si el volumen es demasiado alto. Con **Micrófono siempre listo** activado, también se mueve entre dictados; si lo desactivas, muestra señal mientras grabas o pruebas el micrófono.
+
+En el modo OpenAI en tiempo real, una respuesta vacía o incompleta se reintenta con la grabación por la vía normal de OpenAI. El volumen se limita antes de recortar los picos para evitar distorsión.
+
+La traducción en tiempo real envía el audio mientras dictas y pide una respuesta de solo texto al soltar el atajo, para evitar la espera de generar audio traducido. La latencia puede variar según la conexión y el servicio.
 
 ## Modos
 - Hablo español → escribe en inglés (Whisper traduce directamente)
